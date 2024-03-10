@@ -1,5 +1,4 @@
-﻿
-using Code.UI;
+﻿using Code.UI;
 using CodeBase.Infrastructure.AssetManagement;
 using UnityEngine;
 using Zenject;
@@ -12,8 +11,7 @@ namespace Code.Infrastructure.Factory
         private readonly DiContainer _container;
         public Hud Hud { get; private set; }
 
-        [Inject]
-        public UIFactory(IAssetProvider assets, DiContainer container)
+        private UIFactory(IAssetProvider assets, DiContainer container)
         {
             _assets = assets;
             _container = container;
@@ -24,7 +22,8 @@ namespace Code.Infrastructure.Factory
             Hud = InstantiateRegistered(AssetPath.HudPath).
                     GetComponent<Hud>();
 
-            _container.Bind<Hud>()
+            _container
+                .Bind<Hud>()
                 .FromInstance(Hud)
                 .AsSingle();
 

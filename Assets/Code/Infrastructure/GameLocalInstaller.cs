@@ -1,6 +1,7 @@
 ﻿using Code.Infrastructure.Services;
-using UnityEngine.Device;
+using UnityEngine;
 using Zenject;
+using Application = UnityEngine.Device.Application;
 
 namespace Code.Infrastructure
 {
@@ -13,20 +14,20 @@ namespace Code.Infrastructure
 
         private void BindInputService()
         {
-            if (Application.isEditor)
+           // if (Application.isEditor)
             {
                 Container
-               .Bind<IInputSetvice>()
-               .To<MobileInputService>()
+               .Bind<IInputService>()
+               .To<HybridInputService>()
                .AsSingle();
             }
-            else
-            {             
-                Container
-               .Bind<IInputSetvice>()
-               .To<MobileInputService>()
-               .AsSingle();
-            }
+          //  else
+         //   {             
+         //       Container
+        //       .Bind<IInputService>()
+         //      .To<MobileInputService>()
+         //      .AsSingle();
+          //  }
         }
     }
 }

@@ -6,15 +6,15 @@ namespace Code.Infrastructure
 {
     public class StateMachine
     {
-        protected Dictionary<Type, IExitableState> _states;
-        protected IExitableState _activeState;
+        protected Dictionary<Type, IInitExitableState> _states;
+        protected IInitExitableState _activeState;
         public void Enter<TState>() where TState : class, IState
         {
             IState state = ChangeState<TState>();
             state.Enter();
         }
 
-        protected TState ChangeState<TState>() where TState : class, IExitableState
+        protected TState ChangeState<TState>() where TState : class, IInitExitableState
         {
             _activeState?.Exit();
 
@@ -24,7 +24,7 @@ namespace Code.Infrastructure
             return state;
         }
 
-        protected TState GetState<TState>() where TState : class, IExitableState =>
+        protected TState GetState<TState>() where TState : class, IInitExitableState =>
             _states[typeof(TState)] as TState;
 
     }

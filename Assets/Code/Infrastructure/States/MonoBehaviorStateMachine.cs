@@ -11,10 +11,9 @@ namespace Code.Infrastructure
         protected IUpdatebleState _activeState;
         public void Enter<TState>() where TState : class, IUpdatebleState
         {
-            IState state = ChangeState<TState>();
+            IUpdatebleState state = ChangeState<TState>();
             state.Enter();
         }
-
         protected TState ChangeState<TState>() where TState : class, IUpdatebleState
         {
             _activeState?.Exit();

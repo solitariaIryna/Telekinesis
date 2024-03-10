@@ -11,7 +11,7 @@ namespace Code.Infrastructure.States
         public GameStateMachine(BootstrapState bootstrapState, LoadLevelState loadLevelState, LoadProgressState loadProgressState,
             GameLoopState gameLoopState)
         {
-            _states = new Dictionary<Type, IExitableState>
+            _states = new Dictionary<Type, IInitExitableState>
             {
                 { typeof(BootstrapState), bootstrapState },
                 { typeof(LoadProgressState), loadProgressState },
@@ -19,8 +19,12 @@ namespace Code.Infrastructure.States
                 { typeof(GameLoopState), gameLoopState },
 
             };
+
             foreach (var state in _states.Values)
+            {
                 state.InitState(this);
+            }
+                
         }
 
 

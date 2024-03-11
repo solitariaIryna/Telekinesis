@@ -79,7 +79,7 @@ namespace Code.Items.States
             
             _magnitude = _inputService.InteractionAxis.sqrMagnitude;
             
-            if (_magnitude > 0.01f)
+            if (_magnitude > 0.05f)
             {
               
                 movementVector = _camera.transform.TransformDirection(_inputService.InteractionAxis);
